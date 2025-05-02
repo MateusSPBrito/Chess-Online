@@ -8,5 +8,12 @@ module.exports = (io) => {
             const game = gameService.newGame(obj, socket.id)
             socket.emit('new-game-response', game)
         });
+
+        socket.on('access-game', (obj) => {
+            const game = gameService.accessGame(obj, socket.id)
+            socket.emit('access-game-response', game)
+        })
+
+        socket.on('disconnect', () => { gameService.disconnectPlayer(socket.id) });
     });
 };

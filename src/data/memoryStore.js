@@ -1,4 +1,4 @@
-const players = [] //{socketId, name, avatar, game}
+const players = [] //{socketId, name, game}
 
 const games = []
 // {

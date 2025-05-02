@@ -17,6 +17,6 @@ const server = createServer(app)
 const io = new Server(server, {})
 gameSocket(io)
 
-server.listen(3000, () => {
+server.listen(3000, '0.0.0.0', () => {
     console.log('server on!')
 })

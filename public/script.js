@@ -1,8 +1,17 @@
-// const createGame = async () => {
-//     const player = 'mateus'
+const inputs = document.querySelectorAll('#code-input input');
 
-//     // const newGame = await req('new', 'POST', { player })
-//     // console.log(newGame)
-// }
+game.renderPage()
 
-// createGame()
+inputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) inputs[index + 1].focus()
+    })
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) inputs[index - 1].focus()
+    })
+})
+
+const newGame = () => {
+    const name = document.getElementById('name-input').value.trim();
+    socketEmit('new-game', { name })
+}

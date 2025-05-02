@@ -9,9 +9,50 @@
 </head>
 
 <body>
+
+    <div id="home">
+        <h1>Xadrez Online</h1>
+        <p>Escolha um nome, crie uma sala ou entre em uma existente.</p>
+
+        <input id="name-input" placeholder="Insira um nome" />
+
+        <button onclick="newGame()">Novo jogo</button>
+
+        <p>ou</p>
+        <p>Digite um código para entrar em uma sala existente</p>
+
+        <div id="code-input">
+            <input maxlength="1" type="text" />
+            <input maxlength="1" type="text" />
+            <input maxlength="1" type="text" />
+            <input maxlength="1" type="text" />
+        </div>
+
+        <button>Entrar com código</button>
+    </div>
+
+
+    <div id="waiting">
+        <h1>Aguardando outro jogador...</h1>
+        <p>Compartilhe este código com seu amigo:</p>
+        <div id="code-display">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="loading-spinner">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+
     <script src="/socket.io/socket.io.js"></script>
-    <script src="api.js"></script>
     <script src="socket.js"></script>
+    <script src="Game.js"></script>
     <script src="script.js"></script>
 </body>
 
