@@ -10,8 +10,3 @@ inputs.forEach((input, index) => {
         if (e.key === 'Backspace' && input.value === '' && index > 0) inputs[index - 1].focus()
     })
 })
-
-const newGame = () => {
-    const name = document.getElementById('name-input').value.trim();
-    socketEmit('new-game', { name })
-}

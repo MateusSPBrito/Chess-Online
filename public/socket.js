@@ -4,12 +4,11 @@ const socketEmit = (path, data) => {
     socket.emit(path, data)
 }
 
+const socketOn = (path, callback) => {
+    socket.on(path, callback)
+}
+
 socket.on('connect', () => {
     console.log('Conectado ao servidor com ID:', socket.id)
-
-    socket.on('new-game-response', (obj) => {
-        if (obj.error) return alert(obj.error.message)
-        game.newGame(obj)
-    })
 })
 

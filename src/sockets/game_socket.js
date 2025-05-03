@@ -9,9 +9,9 @@ module.exports = (io) => {
             socket.emit('new-game-response', game)
         });
 
-        socket.on('access-game', (obj) => {
+        socket.on('search-game', (obj) => {
             const game = gameService.accessGame(obj, socket.id)
-            socket.emit('access-game-response', game)
+            io.emit(obj.access, game)
         })
 
         socket.on('disconnect', () => { gameService.disconnectPlayer(socket.id) });

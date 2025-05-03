@@ -16,8 +16,6 @@ class GameService {
     defPlayerObj(obj, socketId) {
         const { name } = obj
         if (name === '') return { error: { message: 'Informe um nome!' } }
-        if (players.some(p => p.name === name)) return { error: { message: 'Nome do jogador em uso!' } }
-
         const player = { name, socketId }
         players.push(player)
 
@@ -34,6 +32,18 @@ class GameService {
         return newGame
     }
 
+    accessGame(obj, socketId) {
+
+        const player = this.defPlayerObj(obj, socketId)
+
+        if (player.error) return player
+
+        const game = this.searchAndUpdateGame(obj.access, player)
+        if (game.error) return game
+
+        return game
+    }
+
     searchAndUpdateGame(access, player) {
         const game = games.find(g => g.access === access)
 
@@ -47,17 +57,6 @@ class GameService {
         game.turn = 'white';
 
         return game;
-    }
-
-
-    accessGame(obj, socketId) {
-        const player = this.defPlayerObj(obj, socketId)
-        if (player.error) return player
-
-        const game = this.searchAndUpdateGame(obj.access, player)
-        if (game.error) return game
-
-        return game
     }
 
     disconnectPlayer(socketId) {
