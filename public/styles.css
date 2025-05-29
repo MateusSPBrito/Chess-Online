@@ -1,7 +1,8 @@
 :root {
-    --gray1: #AAA8AD;
+    --gray0: #d1cfd4;
+    --gray1: #aaa8ad;
     --gray2: #606467;
-    --gray3: #313B44;
+    --gray3: #313b44;
     --gray4: #1C1D22;
     --red: #E72815;
     --brown: #8A4943;
@@ -59,7 +60,8 @@ button:hover {
 }
 
 #home,
-#waiting {
+#waiting,
+#board-container {
     width: 95vw;
     max-width: 400px;
     background-color: var(--gray4);
@@ -153,4 +155,23 @@ button:hover {
         transform: scale(1.3);
         opacity: 1;
     }
+}
+
+#board {
+    width: calc(95vw - 48px);
+    max-width: 352px;
+    height: calc(95vw - 48px);
+    max-height: 352px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(8, 8fr);
+    grid-template-rows: repeat(8, 8fr);
+}
+
+.cell-white {
+    background-color: var(--gray3);
+}
+
+.cell-black {
+    background-color: var(--gray1);
 }

@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll('#code-input input');
+const inputs = document.querySelectorAll('#code-input input')
 
 game.renderPage()
 

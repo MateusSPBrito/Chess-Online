@@ -1,9 +1,10 @@
-const { games, players } = require('../data/memoryStore');
+const Board = require('../class/board')
+const { games, players } = require('../data/memoryStore')
 
 class GameService {
 
     defGameObj(obj, player) {
-        const access = Date.now().toString(36).slice(-4).toUpperCase(); // Ex: "2K7A"
+        const access = Date.now().toString(36).slice(-4).toUpperCase() // Ex: "2K7A"
 
         return {
             status: 'WAITING',
@@ -51,17 +52,18 @@ class GameService {
         if (game.status !== 'WAITING') return { error: { message: 'Partida já começou ou foi encerrada.' } }
         if (game.player2) return { error: { message: 'A sala já está cheia.' } }
 
-        game.player2 = player;
-        game.black = player;
-        game.status = 'IN_PROGRESS';
-        game.turn = 'white';
+        game.player2 = player
+        game.black = player
+        game.status = 'IN_PROGRESS'
+        game.turn = 'white'
+        game.board = new Board()
 
-        return game;
+        return game
     }
 
     disconnectPlayer(socketId) {
-        const index = players.findIndex(p => p.socketId === socketId);
-        if (index !== -1) players.splice(index, 1);
+        const index = players.findIndex(p => p.socketId === socketId)
+        if (index !== -1) players.splice(index, 1)
     }
 }
 
