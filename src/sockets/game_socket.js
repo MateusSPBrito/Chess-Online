@@ -14,6 +14,10 @@ module.exports = (io) => {
             io.emit(obj.access, game)
         })
 
+        socket.on('game-actions', (obj) => {
+
+        })
+
         socket.on('disconnect', () => { gameService.disconnectPlayer(socket.id) })
     })
 }

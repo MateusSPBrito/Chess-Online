@@ -1,4 +1,5 @@
 const inputs = document.querySelectorAll('#code-input input')
+const player = new Player()
 
 game.renderPage()
 

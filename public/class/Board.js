@@ -1,9 +1,10 @@
 class Board {
 
-    constructor(board) {
+    constructor(board, game) {
         this.container = document.getElementById('board')
         this.data = board.data
         this.renderBoard()
+        this.game = game
     }
 
     renderBoard() {
@@ -19,7 +20,7 @@ class Board {
 
                 if (this.data[row][col].piece) this.rederPiece(this.data[row][col].piece, cell)
 
-                cell.addEventListener('click', () => { console.log(this.data[row][col]) })
+                cell.addEventListener('click', () => { this.game.playerAction(this.data[row][col]) })
                 this.container.appendChild(cell)
             }
         }

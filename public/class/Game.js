@@ -1,7 +1,7 @@
 class Game {
     gameMainListener(access) {
         socketOn(`${access}-game`, (obj) => {
-            console.log('inicio da partida')
+            console.log('oiii')
         })
     }
 
@@ -9,8 +9,7 @@ class Game {
         socketOn(access, (obj) => {
             socket.off(access)
             if (obj.error) return alert(obj.error.message)
-            this.defGame(obj)
-            console.log(obj);
+            this.defGameAndPlayer(obj)
         })
     }
 
@@ -18,7 +17,7 @@ class Game {
         socketOn('new-game-response', (obj) => {
             socket.off('new-game-response')
             if (obj.error) return alert(obj.error.message)
-            this.defGame(obj)
+            this.defGameAndPlayer(obj)
         })
     }
 
@@ -37,7 +36,7 @@ class Game {
         socketEmit('search-game', { access, name })
     }
 
-    defGame(obj) {
+    defGameAndPlayer(obj) {
         this.status = obj.status
         this.player1 = obj.player1
         this.player2 = obj.player2
@@ -47,9 +46,9 @@ class Game {
         this.turn = obj.turn
         this.access = obj.access
 
-        console.log(this.board)
-
         this.renderPage(this.status, this.access, this.boardData)
+
+        if (obj.black && obj.white) player.defNameAndColor(obj)
     }
 
     renderPage(status, access, boardData) {
@@ -69,7 +68,7 @@ class Game {
             home.style.display = 'none'
             waiting.style.display = 'none'
             boardContainer.style.display = 'flex'
-            this.boardElement = new Board(boardData)
+            this.boardElement = new Board(boardData, this)
             this.gameMainListener(access)
             return
         }
@@ -97,6 +96,19 @@ class Game {
 
         return code
     }
+
+    playerAction(clickEvent) {
+        console.log(this)
+
+        // if turn != a cor do player, então return
+    }
 }
 
 const game = new Game()
+
+// black{
+//     "name": "a",
+//     "socketId": "zp4zU0a1Fyijb5dCAAAH"
+// }
+
+// turn: 'white'
